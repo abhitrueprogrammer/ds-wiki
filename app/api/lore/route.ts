@@ -8,7 +8,12 @@ export async function GET() {
     await connectToDatabase();
 
     const Posts: IPost[] = await Post.find();
-    return NextResponse.json(Posts, { status: 200 });
+    const filteredPosts = Posts.map(post => ({
+      title: post.title,
+      type: post.type,
+      description: post.description,
+    }));
+    return NextResponse.json(filteredPosts, { status: 200 });
   } catch (e) {
     if (e)
       return NextResponse.json(
