@@ -4,6 +4,8 @@
 - [ ] login and user role
 - [ ] Create backend routes to get approve buffer
 - [ ] create markdown editor
+- [ ] Write backend routes for CRUD of posts
+
 
 # dependencies 
 - Mongoose: mongo database connection

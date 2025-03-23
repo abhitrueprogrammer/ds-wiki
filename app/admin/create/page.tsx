@@ -1,5 +1,5 @@
 import CustomTable from "@/components/customTable";
-import { columns } from "./columns";
+import { columns } from "../columns";
 import { IPost } from "@/interface/types";
 
 
