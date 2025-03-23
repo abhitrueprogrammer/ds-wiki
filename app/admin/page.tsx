@@ -19,7 +19,7 @@ export async function GetAllPapers() {
 
 export default function All() {
   const { data, error, isLoading } = useQuery<IPost[], Error>({
-    queryKey: ["approve"],
+    queryKey: ["posts"],
     queryFn: GetAllPapers,
   });
   if (isLoading) {

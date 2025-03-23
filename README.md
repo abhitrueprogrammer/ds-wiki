@@ -5,7 +5,7 @@
 - [ ] Create backend routes to get approve buffer
 - [ ] create markdown editor
 - [ ] Write backend routes for CRUD of posts
-
+- [ ] 
 
 # dependencies 
 - Mongoose: mongo database connection
@@ -18,3 +18,7 @@
 2. init mongoose connection
 3. create admin page first until figma comes
 4. initialise shadcn for admin panel to not waste time on basic UI
+5. Create Table
+6. Added basic login but didn't connect yet
+7. Added delete and edit 
+8. 
