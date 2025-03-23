@@ -8,6 +8,6 @@ const postSchema = new Schema<IPost>({
 });
 
 const Post: Model<IPost> =
-  mongoose.models.Admin ?? mongoose.model<IPost>("Post", postSchema);
+  mongoose.models.Post ?? mongoose.model<IPost>("Post", postSchema);
 
 export default Post;
