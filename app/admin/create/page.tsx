@@ -1,17 +1,7 @@
-import CustomTable from "@/components/customTable";
-import { columns } from "../columns";
-import { IPost } from "@/interface/types";
+import React from 'react'
 
-
-const Statements = () => {
+export default function CreatePost() {
   return (
-    <CustomTable
-      dateSelection={true}
-      filterSelection={true}
-      searchBar={true}
-      columns={columns}
-      data={mockData}
-      className="m-12"
-    ></CustomTable>
-  );
-};
+    <div>CreatePost</div>
+  )
+}

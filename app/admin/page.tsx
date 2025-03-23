@@ -1,17 +1,42 @@
+"use client" ;
+
 import CustomTable from "@/components/customTable";
 import { columns } from "./columns";
+
+import React from "react";
 import { IPost } from "@/interface/types";
+import { useQuery } from "@tanstack/react-query";
+import client from "../services/api";
+import { handleAPIError } from "@/lib/utils";
+export async function GetAllPapers() {
+  try {
+    const response = await client.get<IPost[]>("/all");
+    return response.data;
+  } catch (e) {
+    throw handleAPIError(e);
+  }
+}
 
-
-const Statements = () => {
-  return (
-    <CustomTable
-      dateSelection={true}
-      filterSelection={true}
-      searchBar={true}
-      columns={columns}
-      data={mockData}
-      className="m-12"
-    ></CustomTable>
-  );
-};
+export default function All() {
+  const { data, error, isLoading } = useQuery<IPost[], Error>({
+    queryKey: ["approve"],
+    queryFn: GetAllPapers,
+  });
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  if (data)
+    return (
+      <CustomTable
+        dateSelection={true}
+        filterSelection={true}
+        searchBar={true}
+        columns={columns}
+        data={data}
+        className="m-12"
+      ></CustomTable>
+    );
+}

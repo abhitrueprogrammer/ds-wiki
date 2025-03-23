@@ -1,6 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "@/components/ui/checkbox";
 import { IPost } from "@/interface/types";
+import { Button } from "@/components/ui/button";
 
 export const columns: ColumnDef<IPost>[] = [
   {
@@ -10,27 +11,24 @@ export const columns: ColumnDef<IPost>[] = [
     enableSorting: true,
     enableHiding: false,
   },
-  {
-    id: "select",
-    header: "Select",
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="rounded-[5px] cursor-pointer border-gray-300 data-[state=checked]:bg-[#9d00f6]"
-      />
-    ),
-  },
+  // {
+  //   id: "select",
+  //   header: "Select",
+  //   cell: ({ row }) => (
+  //     <Checkbox
+  //       checked={row.getIsSelected()}
+  //       onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //       aria-label="Select row"
+  //     />
+  //   ),
+  // },
   {
     accessorKey: "title",
     header: () => {
       return <div className="text-left">Title</div>;
     },
     cell: ({ row }) => (
-      <div className="flex gap-2 text-left min-w-40">
-        {row.original.title}
-      </div>
+      <div className="flex gap-2 text-left min-w-40">{row.original.title}</div>
     ),
   },
   {
@@ -50,31 +48,17 @@ export const columns: ColumnDef<IPost>[] = [
       return <div className="text-left">Edit</div>;
     },
     cell: ({ row }) => (
-      <div className="flex gap-2 text-left min-w-40">
-        Reject
-      </div>
+      <div className="flex gap-2 text-left min-w-40"><Button>Edit</Button></div>
     ),
   },
   {
-    accessorKey: "approve",
+    accessorKey: "delete",
     header: () => {
-      return <div className="text-left">Reject</div>;
+      return <div className="text-left">Delete</div>;
     },
     cell: ({ row }) => (
-      <div className="flex gap-2 text-left min-w-40">
-        Reject
-      </div>
+      <div className="flex gap-2 text-left min-w-40"><Button>Delete</Button></div>
     ),
   },
-  {
-    accessorKey: "reject",
-    header: () => {
-      return <div className="text-left">Approve</div>;
-    },
-    cell: ({ row }) => (
-      <div className="flex gap-2 text-left min-w-40">
-        Approve
-      </div>
-    ),
-  },
+
 ];

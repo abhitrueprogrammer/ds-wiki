@@ -1,5 +1,7 @@
-export type IPost = {
-    _id: string
-    title: string;
-    description: string;
-  };
+import { Document } from "mongoose";
+
+export interface IPost extends Document {
+  _id: string;
+  title: string;
+  description: string;
+}

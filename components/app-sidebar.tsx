@@ -1,4 +1,4 @@
-import { Check, LetterText } from "lucide-react";
+import { LetterText, Plus } from "lucide-react";
 
 import {
   Sidebar,
@@ -15,13 +15,13 @@ import {
 const items = [
   {
     title: "All Posts",
-    url: "#",
+    url: "/admin",
     icon: LetterText,
   },
   {
-    title: "Approve Posts",
-    url: "#",
-    icon: Check,
+    title: "Create Posts",
+    url: "/admin/create",
+    icon: Plus,
   },
 ];
 

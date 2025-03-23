@@ -25,13 +25,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useState } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+
 import { cn } from "@/lib/utils";
-import { Checkbox } from "@/components/ui/checkbox";
 
 type TableProps<T> = {
   dateSelection?: boolean;
@@ -51,18 +46,6 @@ export default function CustomTable<T>({
   columns,
   className,
 }: TableProps<T>) {
-  const [pageInput, setPageInput] = useState("");
-  const [isPopoverOpen, setPopoverOpen] = useState(false);
-
-  const handleSetPage = () => {
-    const pageIndex = Number(pageInput) - 1;
-    if (pageIndex >= 0 && pageIndex < table.getPageCount()) {
-      table.setPageIndex(pageIndex);
-    }
-    setPageInput("");
-    setPopoverOpen(false);
-  };
-
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
@@ -90,26 +73,14 @@ export default function CustomTable<T>({
   return (
     <div className={cn("rounded-lg border", className)}>
       {" "}
-      <div className="bg-[#f9fafb] flex flex-col gap-2 md:flex-row md:items-center md:justify-between py-4 px-5">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between py-4 px-5">
         {selectAll && (
           <div className="-m-2">
             <div className="font-bold">
               {" "}
               Select the items you want in the dataset
             </div>
-            <div className="flex items-center gap-2">
-              <Checkbox
-                checked={
-                  table.getIsAllPageRowsSelected() ||
-                  (table.getIsSomePageRowsSelected() && "indeterminate")
-                }
-                onCheckedChange={(value) =>
-                  table.toggleAllPageRowsSelected(!!value)
-                }
-                aria-label="Select all"
-              />
-              Select All
-            </div>
+
           </div>
         )}
         <div className="flex  items-center space-x-2 ">
@@ -136,7 +107,7 @@ export default function CustomTable<T>({
       </div>
       <div className="rounded-md  ">
         <Table>
-          <TableHeader className="bg-[#f0f2f5]">
+          <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -159,7 +130,7 @@ export default function CustomTable<T>({
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  className={`   data-[state=selected]:shadow-[inset_4px_0_0_#9D00F6] data-[state=selected]:bg-[#f3e1fe] hover:bg-[#f5ebfc]`}
+                  className={`   data-[state=selected]:shadow-[inset_4px_0_0_#9D00F6] data-[state=selected]:bg-gray-800 hover:bg-gray-800 `}
                   data-state={row.getIsSelected() && "selected"}
                 >
                   {row.getVisibleCells().map((cell) => (
@@ -193,63 +164,11 @@ export default function CustomTable<T>({
               {table.getPageCount()}
             </span>
           </div>
-          <div>
-            {[...Array(table.getPageCount()).keys()].map((page, index) => {
-              if (index < 3 || index > table.getPageCount() - 3)
-                return (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className={`${
-                      index == table.getState().pagination.pageIndex
-                        ? "border  border-[#9D00F6]"
-                        : ""
-                    } h-6 c cursor-pointer m-0 rounded-md`}
-                    onClick={() => table.setPageIndex(Number(page))}
-                    key={index}
-                  >
-                    {page + 1}
-                  </Button>
-                );
-              else if (index === 3)
-                return (
-                  <Popover
-                    key={index}
-                    open={isPopoverOpen}
-                    onOpenChange={() => setPopoverOpen(!isPopoverOpen)}
-                  >
-                    <PopoverTrigger asChild>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        className="cursor-pointer px-2 m-0 rounded-md"
-                        key="ellipsis"
-                      >
-                        ...
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-44 p-4">
-                      <div className="flex items-center space-x-2">
-                        <Input
-                          type="number"
-                          placeholder="Page"
-                          value={pageInput}
-                          onChange={(e) => setPageInput(e.target.value)}
-                          className="w-full"
-                        />
-                        <Button size="sm" onClick={handleSetPage}>
-                          Go
-                        </Button>
-                      </div>
-                    </PopoverContent>
-                  </Popover>
-                );
-            })}
-          </div>
+
           <div className="">
             <Button
               size="sm"
-              className="bg-[#676e86] cursor-pointer px-2 text m-0 rounded-l-md rounded-r-none"
+              variant={"outline"}
               onClick={() => table.previousPage()}
               disabled={!table.getCanPreviousPage()}
             >
@@ -257,7 +176,7 @@ export default function CustomTable<T>({
             </Button>
             <Button
               size="sm"
-              className="bg-[#676e86] cursor-pointer  px-2 m-0 rounded-r-md rounded-l-none"
+              variant={"outline"}
               onClick={() => table.nextPage()}
               disabled={!table.getCanNextPage()}
             >
