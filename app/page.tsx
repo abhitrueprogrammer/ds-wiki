@@ -1,101 +1,129 @@
-import Image from "next/image";
+'use client'
+import '@/app/globals.css';
+import { useState } from 'react';
+import Navbar from "@/components/Navbar";
+import TypingText from "@/components/TypingText";
 
-export default function Home() {
+export default function Page() {
+  const [showInitialContent, setShowInitialContent] = useState(true);
+  const [showNextContent, setShowNextContent] = useState(false);
+
+  const handleProceedClick = () => {
+    setShowInitialContent(false);
+    setTimeout(() => setShowNextContent(true), 500);
+  };
+
+  const HandleHomeClick = () => {
+    setShowInitialContent(false);
+    setShowNextContent(true);
+  }
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div className="min-h-screen text-white font-nova">
+      {/* Navbar */}
+      <Navbar onHomeClick={HandleHomeClick}/>
+      
+      {/* Wrapping to maintin both the div's in absolute nd show only one at a time */}
+      <div className="relative min-h-[90vh]">
+        {/* Main Content Initial */}
+        <div className={`flex flex-col min-h-[90vh] px-4 absolute inset-0 items-center transition-opacity duration-300 ${showInitialContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          {showInitialContent && (
+            <>
+              <div className="add-img"></div>
+              
+              {/* Container for Seath and polygon */}
+              <div className="flex items-end w-full relative md:w-[90%] mt-4 md:mt-10">
+                {/* Seath Image - positioned at bottom left */}
+                <div className="absolute left-[-4rem] md:left-[-6rem] bottom-[-3rem] md:bottom-[-6rem] w-[40%] md:w-[25%]">
+                  <img 
+                    src="/seath-2-nbg.png" 
+                    alt="Seath the Scaleless"
+                  />
+                </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+                {/* Polygon with Text - positioned relative to Seath */}
+                <div className="relative border-[#7e714a] w-full max-w-[500px] md:max-w-[750px] h-[300px] md:h-[400px] flex items-center flex-wrap justify-center ml-[20%] mt-[10%] mb-[8%]
+                [filter:drop-shadow(0_0_15px_rgba(126,113,74,0.7))]">
+                  <svg 
+                    width="100%" 
+                    height="100%" 
+                    viewBox="0 0 750 400" 
+                    preserveAspectRatio="none"
+                    className="absolute inset-0"
+                  >
+                    {/* Border (visible stroke) */}
+                    <polygon
+                      points="140,0 750,0 750,400 140,400 90,336 10,240 140,296"
+                      fill="none"
+                      stroke="#7e714a"
+                      strokeWidth="3"
+                    />
+
+                    {/* Clipped background (fill) */}
+                    <polygon
+                      points="140,0 750,0 750,400 140,400 90,336 10,240 140,296"
+                      fill="#30231bcc"
+                      clipPath="url(#polygon-clip)"
+                    />
+
+                    <defs>
+                      <clipPath id="polygon-clip">
+                        <polygon points="140,0 1000,0 1000,400 140,400 90,336 10,240 140,296" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                  {/* Text, TypingText introduces typing animation */}
+                  <div className="break-after-10-chars pl-16 relative z-10 text-white text-[1.5rem] md:text-[2rem] font-bold text-center">
+                    <TypingText 
+                      text="Lorem ipsumdolor sit amet consecteturtatum."
+                      speed={50} 
+                      onComplete={() => document.getElementById('proceed-link')?.classList.remove('opacity-0')}
+                    />
+                    
+                    {/* Proceed link - hidden initially */}
+                    <div id="proceed-link" className="opacity-0 transition-opacity duration-500 mt-6">
+                      <button onClick={handleProceedClick}>
+                        <TypingText 
+                          text="Click to proceed →" 
+                          speed={30}
+                          className="text-[#f16c05] text-[1rem] md:text-[1.25rem] hover:underline cursor-pointer"
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Main Content Next */}
+        <div className={`flex flex-col items-center justify-center min-h-[90vh] px-4 absolute inset-0 transition-opacity duration-300 ${showNextContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          {showNextContent && (
+            <>
+              {/* Adding Image to the bg */}
+              <div className="add-img"></div>
+
+              {/* Box which has our sites description */}
+              <div className="shadow-gen flex-col items-between justify-center w-full max-w-lg md:max-w-3xl bg-[#30231bab] bg-opacity-40 p-6 md:p-8 border-[#7e714a] border-2 rounded-lg text-center m-6 md:m-[75px]">
+                  <h2 className="text-2xl md:text-4xl font-bold">Dark Souls Lore API</h2>
+                  <hr className="my-4 border-[#7e714a] border-2 w-full" />
+                  <p className="text-base md:text-lg text-gray-300">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  </p>
+                  
+                  <div className="w-full h-40 md:h-80 bg-black mt-6 border-2 border-[#7e714a] rounded-lg"></div>
+                  
+                  <button className="gs-border mt-6 px-4 md:px-6 py-2 md:py-3 bg-[#1e0d02] hover:bg-[#0a0605] text-white text-base md:text-lg rounded-lg
+                        transition-all duration-300 transform hover:scale-110">
+                    Get started
+                  </button>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

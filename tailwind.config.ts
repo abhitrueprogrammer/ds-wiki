@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 
+
 export default {
     darkMode: ["class"],
     content: [
@@ -65,8 +66,27 @@ export default {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
-  	}
+  		},
+		fontFamily: {
+			nova: 'var(--font-nova-cut)',
+		},
+		keyframes: {
+			shadowPulse: {
+			  "0%": { boxShadow: "0 4px 10px #f16c05" },
+			  "50%": { boxShadow: "0 4px 20px #ff9400" },
+			  "100%": { boxShadow: "0 4px 10px #f16c05" },
+			},
+			shadowMove: {
+				"0%": { boxShadow: "10px 0px 20px #f16c05" },
+				"50%": { boxShadow: "0px 0px 20px #ff9400" },
+				"100%": { boxShadow: "-10px 0px 20px #f16c05" },
+			  },
+		  },
+		  animation: {
+			shadowPulse: "shadowPulse 2s infinite ease-in-out",
+			shadowMove: "shadowMove 3s infinite linear"
+		  },
+  	},
   },
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
