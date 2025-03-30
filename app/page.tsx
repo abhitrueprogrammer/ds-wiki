@@ -162,7 +162,7 @@ export default function Page() {
 
                 {/* Div to contain the static + input url */}
                 <div className='flex items-center w-full'>
-                  <div className='px-4 py-2 text-black border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff]'>
+                  <div className='px-0 py-2 text-black border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff]'>
                     <span className="text-white text-sm sm:text-base md:text-lg mr-2">http://localhost:3000/</span>
                   </div>
                   <input
@@ -170,9 +170,19 @@ export default function Page() {
                     placeholder="Enter API URL..."
                     value={apiUrl}
                     onChange={(e) => setApiUrl(e.target.value)}
-                    className="w-full sm:flex-grow px-4 py-2 text-white border-[#7e714a] border-t-2 border-r-2 border-b-2 bg-[#30231bab] text-sm sm:text-base md:text-lg"
+                    className="w-full sm:flex-grow px-0 py-2 text-white border-[#7e714a] border-t-2 border-r-2 border-b-2 bg-[#30231bab] text-sm sm:text-base md:text-lg"
                   />
                 </div>
+
+                <a 
+                  href={`http://localhost:3000/${apiUrl}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="mt-2 text-white text-sm sm:text-base md:text-lg underline hover:text-[#f16c05] transition"
+                >
+                  {`http://localhost:3000/${apiUrl}`}
+                </a>
+
                 <button onClick={handleSearch}
                 className="gs-border mt-4 px-4 py-2 bg-[#1e0d02] hover:bg-[#0a0605] text-white text-base md:text-lg rounded-lg
                           transition-all duration-300 transform hover:scale-110">
