@@ -7,24 +7,48 @@ import TypingText from "@/components/TypingText";
 export default function Page() {
   const [showInitialContent, setShowInitialContent] = useState(true);
   const [showNextContent, setShowNextContent] = useState(false);
+  const [showApiDiv, setShowApiDiv] = useState(false);
+  const [apiUrl, setApiUrl] = useState("");
+  const [jsonData, setJsonData] = useState(null);
 
-  const handleProceedClick = () => {
+  const HandleProceedClick = () => {
+    setShowApiDiv(false);
     setShowInitialContent(false);
-    setTimeout(() => setShowNextContent(true), 500);
+    setTimeout(() => setShowNextContent(true), 400);
   };
 
-  const HandleHomeClick = () => {
-    setShowInitialContent(false);
-    setShowNextContent(true);
+  const handleLogoClick = () => {
+    setShowApiDiv(false);
+    setShowNextContent(false);
+    setTimeout(() => setShowInitialContent(true), 400);
   }
+
+  const handleGetStarted = () => {
+    setShowNextContent(false);
+    setShowInitialContent(false);
+    setTimeout(() => setShowApiDiv(true), 400);
+  };
+
+  const handleSearch = async () => {
+    if (!apiUrl.trim()) return;
+
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+      setJsonData(data);
+    } catch {
+      setJsonData({ "error": "Invalid API or network error." });
+    }
+  };
 
   return (
     <div className="min-h-screen text-white font-nova">
       {/* Navbar */}
-      <Navbar onHomeClick={HandleHomeClick}/>
+      <Navbar onHomeClick={HandleProceedClick} onAPIClick={handleGetStarted} onLogoClick={handleLogoClick}/>
       
       {/* Wrapping to maintin both the div's in absolute nd show only one at a time */}
       <div className="relative min-h-[90vh]">
+
         {/* Main Content Initial */}
         <div className={`flex flex-col min-h-[90vh] px-4 absolute inset-0 items-center transition-opacity duration-300 ${showInitialContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           {showInitialContent && (
@@ -83,7 +107,7 @@ export default function Page() {
                     
                     {/* Proceed link - hidden initially */}
                     <div id="proceed-link" className="opacity-0 transition-opacity duration-500 mt-6">
-                      <button onClick={handleProceedClick}>
+                      <button onClick={HandleProceedClick}>
                         <TypingText 
                           text="Click to proceed →" 
                           speed={30}
@@ -115,10 +139,48 @@ export default function Page() {
                   
                   <div className="w-full h-40 md:h-80 bg-black mt-6 border-2 border-[#7e714a] rounded-lg"></div>
                   
-                  <button className="gs-border mt-6 px-4 md:px-6 py-2 md:py-3 bg-[#1e0d02] hover:bg-[#0a0605] text-white text-base md:text-lg rounded-lg
+                  <button 
+                  onClick={handleGetStarted}
+                  className="gs-border mt-6 px-4 md:px-6 py-2 md:py-3 bg-[#1e0d02] hover:bg-[#0a0605] text-white text-base md:text-lg rounded-lg
                         transition-all duration-300 transform hover:scale-110">
                     Get started
                   </button>
+              </div>
+            </>
+          )}
+        </div>
+
+        {/* API Search Div */}
+        <div className={`absolute inset-0 flex flex-col items-center justify-center min-h-[90vh] px-4 transition-opacity duration-300 ${showApiDiv ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          {showApiDiv && (
+            <>
+              <div className='add-img'></div>
+
+              <div className="shadow-gen flex flex-col items-center w-full max-w-lg sm:max-w-xl md:max-w-3xl bg-[#30231b8b] bg-opacity-40 p-4 sm:p-6 md:p-8 border-[#7e714a] border-2 rounded-lg text-center">
+                <h2 className="text-xl sm:text-2xl md:text-4xl font-bold">Dark Souls Lore API</h2>
+                <hr className="my-4 border-[#7e714a] border-2 w-full" />
+
+                {/* Div to contain the static + input url */}
+                <div className='flex items-center w-full'>
+                  <div className='px-4 py-2 text-black border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff]'>
+                    <span className="text-white text-sm sm:text-base md:text-lg mr-2">http://localhost:3000/</span>
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="Enter API URL..."
+                    value={apiUrl}
+                    onChange={(e) => setApiUrl(e.target.value)}
+                    className="w-full sm:flex-grow px-4 py-2 text-white border-[#7e714a] border-t-2 border-r-2 border-b-2 bg-[#30231bab] text-sm sm:text-base md:text-lg"
+                  />
+                </div>
+                <button onClick={handleSearch}
+                className="gs-border mt-4 px-4 py-2 bg-[#1e0d02] hover:bg-[#0a0605] text-white text-base md:text-lg rounded-lg
+                          transition-all duration-300 transform hover:scale-110">
+                  Search
+                </button>
+                <div className="w-full h-40 md:h-80 flex justify-start items-start bg-black mt-6 border-2 border-[#7e714a] rounded-lg p-4 overflow-auto text-white">
+                  <pre className="whitespace-pre-wrap break-all text-left">{jsonData ? JSON.stringify(jsonData, null, 2) : "API response will appear here..."}</pre>
+                </div>
               </div>
             </>
           )}
