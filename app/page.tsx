@@ -67,7 +67,7 @@ export default function Page() {
       <div className="relative min-h-[90vh]">
 
         {/* Main Content Initial */}
-        <div className={`flex flex-col min-h-[90vh] px-4 absolute inset-0 items-center transition-opacity duration-300 ${showInitialContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className={`flex flex-col min-h-[90vh] px-4 absolute inset-0 items-center overflow-hidden transition-opacity duration-300 ${showInitialContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           {showInitialContent && (
             <>
               <div className="add-img"></div>
