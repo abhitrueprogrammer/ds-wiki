@@ -13,7 +13,7 @@ export default function Navbar({
     onLogoClick: () => void,
     onAboutUsClick: () => void}) {
   return (
-    <div className="h-[10vh] sticky top-0 w-full">
+    <div className="h-[10vh] relative top-0 w-full">
       <div className="navbar-shadow px-6 md:px-10">
         <div className="w-[15vh] md:w-[25vh] h-[5vh] relative">
             <button
