@@ -73,9 +73,9 @@ export default function Page() {
               <div className="add-img"></div>
               
               {/* Container for Seath and polygon */}
-              <div className="flex items-end w-full relative md:w-[90%] mt-4 md:mt-10">
+              <div className="flex items-end w-full relative md:w-[90%] mt-[8rem] sm:mt-[5rem] md:mt-10">
                 {/* Seath Image - positioned at bottom left */}
-                <div className="absolute left-[-4rem] md:left-[-6rem] bottom-[-3rem] md:bottom-[-6rem] w-[40%] md:w-[25%]">
+                <div className="absolute left-[-4rem] md:left-[-6rem] bottom-[-3rem] md:bottom-[-6rem] w-[12rem] sm:w-[14rem] md:w-[16rem] lg:w-[20rem]">
                   <img 
                     src="/seath-2-nbg.png" 
                     alt="Seath the Scaleless"
