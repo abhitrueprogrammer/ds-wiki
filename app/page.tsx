@@ -2,7 +2,7 @@
 import '@/app/globals.css';
 import { useState } from 'react';
 import Navbar from "@/components/Navbar";
-import AboutUs from '@/AboutUs';
+import AboutUs from '@/components/AboutUs';
 import TypingText from "@/components/TypingText";
 
 export default function Page() {
