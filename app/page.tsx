@@ -2,31 +2,43 @@
 import '@/app/globals.css';
 import { useState } from 'react';
 import Navbar from "@/components/Navbar";
+import AboutUs from '@/AboutUs';
 import TypingText from "@/components/TypingText";
 
 export default function Page() {
   const [showInitialContent, setShowInitialContent] = useState(true);
   const [showNextContent, setShowNextContent] = useState(false);
   const [showApiDiv, setShowApiDiv] = useState(false);
+  const [showAboutUs, setShowAboutUs] = useState(false);
   const [apiUrl, setApiUrl] = useState("");
   const [jsonData, setJsonData] = useState(null);
-
+  
   const HandleProceedClick = () => {
     setShowApiDiv(false);
     setShowInitialContent(false);
+    setShowAboutUs(false);
     setTimeout(() => setShowNextContent(true), 400);
   };
 
   const handleLogoClick = () => {
     setShowApiDiv(false);
     setShowNextContent(false);
+    setShowAboutUs(false);
     setTimeout(() => setShowInitialContent(true), 400);
   }
 
   const handleGetStarted = () => {
     setShowNextContent(false);
     setShowInitialContent(false);
+    setShowAboutUs(false);
     setTimeout(() => setShowApiDiv(true), 400);
+  };
+
+  const handleAboutUsClick = () => {
+    setShowNextContent(false);
+    setShowInitialContent(false);
+    setShowApiDiv(false);
+    setTimeout(() => setShowAboutUs(true), 400);
   };
 
   const handleSearch = async () => {
@@ -44,7 +56,12 @@ export default function Page() {
   return (
     <div className="min-h-screen text-white font-nova">
       {/* Navbar */}
-      <Navbar onHomeClick={HandleProceedClick} onAPIClick={handleGetStarted} onLogoClick={handleLogoClick}/>
+      <Navbar
+       onHomeClick={HandleProceedClick}
+       onAPIClick={handleGetStarted}
+       onLogoClick={handleLogoClick}
+       onAboutUsClick={handleAboutUsClick}
+       />
       
       {/* Wrapping to maintin both the div's in absolute nd show only one at a time */}
       <div className="relative min-h-[90vh]">
@@ -162,8 +179,8 @@ export default function Page() {
 
                 {/* Div to contain the static + input url */}
                 <div className='flex items-center w-full'>
-                  <div className='px-0 py-2 text-black border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff]'>
-                    <span className="text-white text-sm sm:text-base md:text-lg mr-2">http://localhost:3000/</span>
+                  <div className='px-0 sm:flex-grow py-2 border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff] text-white text-sm sm:text-base md:text-lg'>
+                    <p>http://localhost:3000/</p>
                   </div>
                   <input
                     type="text"
@@ -194,6 +211,11 @@ export default function Page() {
               </div>
             </>
           )}
+        </div>
+
+        {/* About Us Div */}
+        <div className={`absolute inset-0 transition-opacity duration-300 ${showAboutUs ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+          {showAboutUs && <AboutUs />}
         </div>
       </div>
     </div>
