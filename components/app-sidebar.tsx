@@ -34,7 +34,7 @@ export async function  AppSidebar() {
     user: {
       name: session?.user?.name ?? "Anonymous",
       email: session?.user?.email ?? "Anonymous",
-      avatar: session?.user?.image ?? "CN",
+      avatar: session?.user?.image ?? "ADMIN",
     },
   };
   return (
