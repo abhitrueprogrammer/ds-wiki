@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
-import { connectToDatabase } from "@/app/lib/mongoose";
-import Authorized from "@/db/authorized-users";
+import client from "@/app/services/api";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
@@ -10,14 +9,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (!profile?.email) {
         return false;
       }
-      await connectToDatabase();
 
-      const user = await Authorized.findOne({ email: profile?.email });
+      try {
+        const response = await client.get<{ authorized: boolean }>(
+          `${process.env.SERVER_URL}/api/check-authorized`,
+          {
+            params: { email: profile.email },
+          },
+        );
 
-      if (!user) {
+        return response.data.authorized;
+      } catch (error) {
+        console.error("Authorization check failed:", error);
         return false;
       }
-      return true;
     },
   },
 });

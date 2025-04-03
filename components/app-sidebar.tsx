@@ -3,6 +3,7 @@ import { LetterText, Plus } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -10,6 +11,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { NavUser } from "./nav-user";
+import { auth } from "@/auth";
 
 // Menu items.
 const items = [
@@ -25,7 +28,15 @@ const items = [
   },
 ];
 
-export function AppSidebar() {
+export async function  AppSidebar() {
+  const session = await auth();
+  const data = {
+    user: {
+      name: session?.user?.name ?? "Anonymous",
+      email: session?.user?.email ?? "Anonymous",
+      avatar: session?.user?.image ?? "CN",
+    },
+  };
   return (
     <Sidebar>
       <SidebarContent>
@@ -47,6 +58,11 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <NavUser user={data.user} />
+      </SidebarFooter>
     </Sidebar>
   );
 }
+
+
