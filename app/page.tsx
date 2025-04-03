@@ -191,7 +191,7 @@ export default function Page() {
                 {/* Div to contain the static + input url */}
                 <div className='flex items-center w-full'>
                   <div className='pl-2 whitespace-nowrap sm:flex-grow py-2 break border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff] text-white text-sm sm:text-base md:text-lg'>
-                    <p>http://localhost:3000/</p>
+                    <p>dsapi.abhinavpant.tech/</p>
                   </div>
                   <input
                     type="text"
@@ -203,12 +203,12 @@ export default function Page() {
                 </div>
 
                 <a 
-                  href={`http://localhost:3000/${apiUrl}`} 
+                  href={`dsapi.abhinavpant.tech/${apiUrl}`} 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="mt-2 text-white text-sm sm:text-base md:text-lg underline hover:text-[#f16c05] transition"
                 >
-                  {`http://localhost:3000/${apiUrl}`}
+                  {`dsapi.abhinavpant.tech/${apiUrl}`}
                 </a>
 
                 <button onClick={handleSearch}
