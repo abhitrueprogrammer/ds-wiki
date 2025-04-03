@@ -49,7 +49,7 @@ export default function Page() {
       const data = await response.json();
       setJsonData(data);
     } catch {
-      setJsonData({ "error": "Invalid API or network error." });
+      setJsonData({ "error": "Invalid API or network error." } as any);
     }
   };
 
