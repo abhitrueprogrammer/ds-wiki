@@ -1,11 +1,11 @@
 # Todo
-- [ ] Link the mongo db
-- [ ] Admin Panel
-- [ ] login and user role
-- [ ] Create backend routes to get approve buffer
-- [ ] create markdown editor
-- [ ] Write backend routes for CRUD of posts
-- [ ] 
+- [x] Link the mongo db
+- [x] Admin Panel
+- [x] login and user role
+- [x] Create backend routes to get approve buffer
+- [x] create markdown editor
+- [x] Write backend routes for CRUD of lore
+
 
 # dependencies 
 - Mongoose: mongo database connection
