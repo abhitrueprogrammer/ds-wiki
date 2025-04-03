@@ -3,12 +3,12 @@
 import '@/app/globals.css'
 
 export default function Navbar({
-  onHomeClick,
+  onAdminClick,
   onAPIClick,
   onLogoClick,
   onAboutUsClick
   }: {
-    onHomeClick: () => void,
+    onAdminClick: () => void,
     onAPIClick: () => void,
     onLogoClick: () => void,
     onAboutUsClick: () => void}) {
@@ -23,12 +23,6 @@ export default function Navbar({
             </button>
         </div>
         <div className="flex items-center gap-4 md:gap-10">
-          <button
-            onClick={onHomeClick}
-            className="text-[1rem] md:text-[1.75rem] hover:text-[#f16c05]"
-          >
-            Home
-          </button>
           <button 
             onClick={onAPIClick}
             className="text-[1rem] md:text-[1.75rem] hover:text-[#f16c05]"
@@ -40,6 +34,12 @@ export default function Navbar({
             className="text-[1rem] md:text-[1.75rem] hover:text-[#f16c05]"
           >
             About Us
+          </button>
+          <button
+            onClick={onAdminClick}
+            className="text-[1rem] md:text-[1.75rem] hover:text-[#f16c05]"
+          >
+            Admins
           </button>
         </div>
       </div>

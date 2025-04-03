@@ -77,7 +77,7 @@
 .break-after-10-chars {
   word-wrap: break-word;
   overflow-wrap: break-word;
-  width: 20ch; /* 10 character units wide */
+  width: 25ch; /* 10 character units wide */
   white-space: pre-wrap; /* Preserve newlines and wrap */
   letter-spacing: 0.25rem;       /* Space between characters */
   line-height: 1.5;

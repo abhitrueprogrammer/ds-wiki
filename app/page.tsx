@@ -14,9 +14,15 @@ export default function Page() {
   const [jsonData, setJsonData] = useState(null);
   
   const HandleProceedClick = () => {
-    setShowApiDiv(false);
     setShowInitialContent(false);
     setShowAboutUs(false);
+    setShowNextContent(false);
+    setTimeout(() => setShowApiDiv(true), 400);
+  };
+  const HandleAdminClick = () => {
+    setShowInitialContent(false);
+    setShowAboutUs(false);
+    setShowApiDiv(false);
     setTimeout(() => setShowNextContent(true), 400);
   };
 
@@ -57,7 +63,7 @@ export default function Page() {
     <div className="min-h-screen text-white font-nova">
       {/* Navbar */}
       <Navbar
-       onHomeClick={HandleProceedClick}
+       onAdminClick={HandleAdminClick}
        onAPIClick={handleGetStarted}
        onLogoClick={handleLogoClick}
        onAboutUsClick={handleAboutUsClick}
@@ -117,7 +123,7 @@ export default function Page() {
                   {/* Text, TypingText introduces typing animation */}
                   <div className="break-after-10-chars pl-16 relative z-10 text-white text-[1.5rem] md:text-[2rem] font-bold text-center">
                     <TypingText 
-                      text="Lorem ipsumdolor sit amet consecteturtatum."
+                      text="The fire fades, but knowledge endures. Access the lore, forge your own path."
                       speed={50} 
                       onComplete={() => document.getElementById('proceed-link')?.classList.remove('opacity-0')}
                     />
@@ -139,7 +145,7 @@ export default function Page() {
           )}
         </div>
 
-        {/* Main Content Next */}
+        {/* Admin About Div */}
         <div className={`flex flex-col items-center justify-center min-h-[90vh] px-4 absolute inset-0 transition-opacity duration-300 ${showNextContent ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           {showNextContent && (
             <>
@@ -148,19 +154,24 @@ export default function Page() {
 
               {/* Box which has our sites description */}
               <div className="shadow-gen flex-col items-between justify-center w-full max-w-lg md:max-w-3xl bg-[#30231bab] bg-opacity-40 p-6 md:p-8 border-[#7e714a] border-2 rounded-lg text-center m-6 md:m-[75px]">
-                  <h2 className="text-2xl md:text-4xl font-bold">Dark Souls Lore API</h2>
+                  <h2 className="text-2xl md:text-4xl font-bold">Want to become an Admin?</h2>
                   <hr className="my-4 border-[#7e714a] border-2 w-full" />
                   <p className="text-base md:text-lg text-gray-300">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  The flames are fading, but legends never die. Will you rise as an Admin, uphold the legacy, and shape the fate of this world?
                   </p>
                   
-                  <div className="w-full h-40 md:h-80 bg-black mt-6 border-2 border-[#7e714a] rounded-lg"></div>
+                  <div className="w-full h-40 md:h-80 mt-6 border-2 border-[#7e714a] rounded-lg">
+                    <iframe 
+                      className="w-full h-full"
+                      src="https://www.youtube.com/embed/o1780AqAa20"
+                    ></iframe>
+                  </div>
                   
                   <button 
-                  onClick={handleGetStarted}
+                  onClick={handleAboutUsClick}
                   className="gs-border mt-6 px-4 md:px-6 py-2 md:py-3 bg-[#1e0d02] hover:bg-[#0a0605] text-white text-base md:text-lg rounded-lg
                         transition-all duration-300 transform hover:scale-110">
-                    Get started
+                    About Us
                   </button>
               </div>
             </>
@@ -179,7 +190,7 @@ export default function Page() {
 
                 {/* Div to contain the static + input url */}
                 <div className='flex items-center w-full'>
-                  <div className='px-0 sm:flex-grow py-2 border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff] text-white text-sm sm:text-base md:text-lg'>
+                  <div className='pl-2 sm:flex-grow py-2 border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff] text-white text-sm sm:text-base md:text-lg'>
                     <p>http://localhost:3000/</p>
                   </div>
                   <input
