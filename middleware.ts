@@ -12,6 +12,6 @@ export default auth(async (req) => {
 export const config = {
   matcher: [
     "/api/all/:path*",
-    "/admin"
+    "/admin/:path*"
   ],
 };
