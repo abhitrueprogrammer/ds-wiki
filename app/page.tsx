@@ -10,8 +10,8 @@ export default function Page() {
   const [showNextContent, setShowNextContent] = useState(false);
   const [showApiDiv, setShowApiDiv] = useState(false);
   const [showAboutUs, setShowAboutUs] = useState(false);
-  const [apiUrl, setApiUrl] = useState("");
-  const [jsonData, setJsonData] = useState(null);
+  const [apiUrl, setApiUrl] = useState("api/lore");
+  const [jsonData, setJsonData] = useState<{error: string} | null>(null);
   
   const HandleProceedClick = () => {
     setShowInitialContent(false);
@@ -55,7 +55,7 @@ export default function Page() {
       const data = await response.json();
       setJsonData(data);
     } catch {
-      setJsonData({ "error": "Invalid API or network error." } as any);
+      setJsonData({ "error": "Invalid API or network error." } );
     }
   };
 
@@ -190,7 +190,7 @@ export default function Page() {
 
                 {/* Div to contain the static + input url */}
                 <div className='flex items-center w-full'>
-                  <div className='pl-2 sm:flex-grow py-2 border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff] text-white text-sm sm:text-base md:text-lg'>
+                  <div className='pl-2 whitespace-nowrap sm:flex-grow py-2 break border-[#7e714a] border-t-2 border-l-2 border-b-2 bg-[#ff00fff] text-white text-sm sm:text-base md:text-lg'>
                     <p>http://localhost:3000/</p>
                   </div>
                   <input

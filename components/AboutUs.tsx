@@ -35,7 +35,7 @@ export default function AboutUs() {
         <div className="flex flex-wrap justify-center items-center w-full gap-8 md:gap-16">
           {/* Team Member 1 */}
           <TeamMember 
-            name="Artorias" 
+            name="Abhinav Pant" 
             role="Lead Developer"
             image="/artorias.jpeg"
             bio="Keeper of ancient code, wielder of APIs, and scholar of forgotten frameworks."
@@ -43,7 +43,7 @@ export default function AboutUs() {
           
           {/* Team Member 2 */}
           <TeamMember 
-            name="Gwynevere" 
+            name="CV Sivaram" 
             role="Lore Architect"
             image="/artorias.jpeg"
             bio="Weaver of stories, guardian of forgotten tales, and architect of narrative APIs."
