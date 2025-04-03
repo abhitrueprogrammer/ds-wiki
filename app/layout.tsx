@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Nova_Cut } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/Providers";
 import { Toaster } from "react-hot-toast";
+
+const novaCut = Nova_Cut({
+  variable: "--font-nova-cut",
+  weight: "400", // Nova Cut only has one weight
+  subsets: ["latin"],
+});
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} dark antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${novaCut.variable} dark antialiased`}
       >
         <Toaster/>
         <Providers>{children}</Providers>

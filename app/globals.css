@@ -2,7 +2,86 @@
 @tailwind components;
 @tailwind utilities;
 
+.add-img{
+  width: 100%;
+  height: 100%;
+  background-image: url("/ds.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  z-index: -2;
+}
 
+/* ----------------------------nav_bar and it's shadow------------------------ */
+.navbar-shadow{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: #32302b;
+  position: relative;
+  height: 10vh;
+  width: 100%;
+
+}
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 360deg;
+  inherits: false;
+}
+.navbar-shadow::after, .navbar-shadow::before{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle),#f16c05,#f50000, #ff5100, #ff6435);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 45px;
+  animation: 5s spin linear infinite;
+  pointer-events: none; 
+  clip-path: inset(-50px -50px 0px -50px);
+}
+.navbar-shadow::before{
+  padding: 50px;
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+@keyframes spin {
+  from {
+    --angle: 360deg;
+  }
+  to {
+    --angle: 0deg;
+  }
+}
+/* ---------------------------mainBox-shadow------------------------------ */
+
+.shadow-gen{
+  -webkit-box-shadow: 8px 15px 23px -7px rgba(79,72,53,1);
+  -moz-box-shadow: 8px 15px 23px -7px rgba(79,72,53,1);
+  box-shadow: 8px 15px 23px -7px rgba(79,72,53,1);
+}
+/* --------------------------------GetStarted-Button_Effects---------------------------- */
+
+.gs-border{
+  -webkit-box-shadow: -1px 7px 24px -4px rgba(115,94,80,1);
+  -moz-box-shadow: -1px 7px 24px -4px rgba(115,94,80,1);
+  box-shadow: -1px 7px 24px -4px rgba(115,94,80,1);  
+}
+
+.break-after-10-chars {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 25ch; /* 10 character units wide */
+  white-space: pre-wrap; /* Preserve newlines and wrap */
+  letter-spacing: 0.25rem;       /* Space between characters */
+  line-height: 1.5;
+}
 
 @layer base {
   :root {
