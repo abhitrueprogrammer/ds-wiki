@@ -13,7 +13,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import Markdown from "react-markdown";
-export async function CreatePost(data: ICreatePost) {
+async function CreatePost(data: ICreatePost) {
   try {
     console.log(data);
     await client.post("/all", data);
@@ -22,7 +22,7 @@ export async function CreatePost(data: ICreatePost) {
     throw handleAPIError(e);
   }
 }
-const Create = () => {
+export default function Create() {
   const queryClient = useQueryClient();
 
   const { register, handleSubmit, reset } = useForm<ICreatePost>();
@@ -94,7 +94,7 @@ const Create = () => {
             <div className="markdown w-full border p-2">
               <Markdown>{description}</Markdown>
             </div>
-          </div> 
+          </div>
         </div>
 
         <div className="grid grid-cols-4 items-center gap-4">
@@ -126,4 +126,3 @@ const Create = () => {
   );
 };
 
-export default Create;

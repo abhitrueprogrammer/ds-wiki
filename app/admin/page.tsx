@@ -8,7 +8,7 @@ import { IPost } from "@/interface/types";
 import { useQuery } from "@tanstack/react-query";
 import client from "../services/api";
 import { handleAPIError } from "@/lib/utils";
-export async function GetAllPapers() {
+ async function GetAllLore() {
   try {
     const response = await client.get<IPost[]>("/all");
     return response.data;
@@ -20,7 +20,7 @@ export async function GetAllPapers() {
 export default function All() {
   const { data, error, isLoading } = useQuery<IPost[], Error>({
     queryKey: ["posts"],
-    queryFn: GetAllPapers,
+    queryFn: GetAllLore,
   });
   if (isLoading) {
     return <div>Loading...</div>;
