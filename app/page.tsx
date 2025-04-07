@@ -89,7 +89,7 @@ export default function Page() {
                 </div>
 
                 {/* Polygon with Text - positioned relative to Seath */}
-                <div className="relative border-[#7e714a] w-full max-w-[353px] md:max-w-[750px] h-[300px] md:h-[400px] flex items-center flex-wrap justify-center ml-[20%] mt-[10%] mb-[8%]
+                <div className="relative border-[#7e714a] w-full max-w-[330px] md:max-w-[750px] h-[300px] md:h-[400px] flex items-center flex-wrap justify-center ml-[20%] mt-[10%] mb-[8%]
                 [filter:drop-shadow(0_0_15px_rgba(126,113,74,0.7))]">
                   <svg 
                     width="100%" 
@@ -121,7 +121,7 @@ export default function Page() {
                   </svg>
 
                   {/* Text, TypingText introduces typing animation */}
-                  <div className="break-after-10-chars pl-16 relative z-10 text-white text-[1.5rem] md:text-[1.75rem] lg:text-[2rem] font-bold text-center">
+                  <div className="break-after-10-chars pl-16 relative z-10 text-white text-[1.3rem] md:text-[1.75rem] lg:text-[2rem] font-bold text-center">
                     <TypingText 
                       text="The fire fades, but knowledge endures. Access the lore, forge your own path."
                       speed={50} 
