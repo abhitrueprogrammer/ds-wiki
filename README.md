@@ -29,7 +29,14 @@ We also feature an admin panel to perform CRUD on these posts
 6. Added basic login but didn't connect yet
 7. Added delete and edit 
 8. Connected authentication
-9. 
+9. Desgin plan made
+10. Homepage (current admin page)
+11. created nav.tsx for easier use
+12. curent homepage created
+13. content page: To call api -> display json.
+14. AboutUs.tsx created and implimented
+15. Styled according to design plan
+
 ## 🏁 Setup
 
 To get started, fork your own copy and clone the main branch. To clone a branch you can run the following:
@@ -51,3 +58,4 @@ To start your development server run:
 ```bash
 pnpm dev
 ```
+
