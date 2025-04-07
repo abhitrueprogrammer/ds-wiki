@@ -29,3 +29,25 @@ We also feature an admin panel to perform CRUD on these posts
 6. Added basic login but didn't connect yet
 7. Added delete and edit 
 8. Connected authentication
+9. 
+## 🏁 Setup
+
+To get started, fork your own copy and clone the main branch. To clone a branch you can run the following:
+
+```bash
+git clone -b main https://github.com/<Your username>/dswiki.git
+```
+
+Run these commands on your bash/terminal and open it in a code editor of your choice.
+
+Run the following to install all the dependencies:
+
+```bash
+pnpm i
+```
+
+To start your development server run:
+
+```bash
+pnpm dev
+```
