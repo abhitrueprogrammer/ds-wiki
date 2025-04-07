@@ -52,6 +52,16 @@ Run the following to install all the dependencies:
 ```bash
 pnpm i
 ```
+Then create a .env file and provide values for the following fields:
+```
+MONGODB_URI=
+SERVER_URL=http://localhost:3000
+AUTH_SECRET=
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
+```
+You can create a MONGODB cluster by visiting: https://cloud.mongodb.com/
+You can setup google credentials by visition: https://authjs.dev/getting-started/authentication/oauth
 
 To start your development server run:
 
