@@ -36,3 +36,26 @@ We also feature an admin panel to perform CRUD on these posts
 13. content page: To call api -> display json.
 14. AboutUs.tsx created and implimented
 15. Styled according to design plan
+
+## 🏁 Setup
+
+To get started, fork your own copy and clone the main branch. To clone a branch you can run the following:
+
+```bash
+git clone -b main https://github.com/<Your username>/dswiki.git
+```
+
+Run these commands on your bash/terminal and open it in a code editor of your choice.
+
+Run the following to install all the dependencies:
+
+```bash
+pnpm i
+```
+
+To start your development server run:
+
+```bash
+pnpm dev
+```
+
