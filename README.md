@@ -15,11 +15,16 @@ We also feature an admin panel to perform CRUD on these posts
 - [x] Styling 
 
 # dependencies 
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [ShadCN](https://ui.shadcn.com/)
+- [React Hot Toast](https://react-hot-toast.com/)
+- [Axios](https://axios-http.com/)
 - Mongoose: mongo database connection
 - Tanstack table: admin tables
-- shadcn: basic scaffold ui
 - auth.js: login
-
 # Log
 1. init next project
 2. init mongoose connection
@@ -61,7 +66,7 @@ AUTH_GOOGLE_ID=
 AUTH_GOOGLE_SECRET=
 ```
 You can create a MONGODB cluster by visiting: https://cloud.mongodb.com/
-You can setup google credentials by visition: https://authjs.dev/getting-started/authentication/oauth
+You can setup google credentials by visiting: https://authjs.dev/getting-started/authentication/oauth
 
 To start your development server run:
 
