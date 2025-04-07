@@ -52,10 +52,13 @@ We also feature an admin panel to perform CRUD on these posts
 ## ScreenShots
 **Home Page**
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/2a1c0877-0101-427c-b416-22b963c4242a" />
+
 **API Page**: You can call and view contents of our API here
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/3bcda600-8f62-4f46-8764-e5824eb5436c" />
+
 **Admin Panel**: Admin powers let you manage the Posts->Edit or Delete
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/51afe0d9-b59d-4cf6-ae8a-d57218ba21ca" />
+
 **Post Creation**: Admins can create new posts in a **Markdown Editor**
 <img width="1280" alt="image" src="https://github.com/user-attachments/assets/f80dd4e5-1e8f-4946-88f3-ef760dd07f33" />
 
